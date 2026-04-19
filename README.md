@@ -22,12 +22,19 @@ Instead of chunking documents and searching by approximate vector similarity, Ve
 pip install -r requirements.txt
 ```
 
-### 2. Set API keys
+### 2. Create .env file and set API keys
+
+Create a `.env` file in the project root and add your API keys:
 
 ```bash
-cp .env.example .env
-# Fill in your keys in .env
+# .env
+PAGEINDEX_API_KEY=your_pageindex_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
 ```
+
+**Get your API keys:**
+- **PageIndex API Key**: Sign up at [pageindex.ai](https://pageindex.ai) and generate an API key
+- **OpenAI API Key**: Get your key from [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
 
 ## Usage
 
