@@ -74,7 +74,7 @@ python step5_vision_rag.py --doc-id <doc_id> --pdf ./annual_report.pdf --query "
 vectorless-rag-langchain/
 ├── README.md
 ├── requirements.txt
-├── .env.example
+├── .env
 ├── step1_submit_pdf.py
 ├── step2_inspect_tree.py
 ├── step3_retrieve_generate.py
