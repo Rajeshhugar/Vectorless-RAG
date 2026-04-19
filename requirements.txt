@@ -1,0 +1,7 @@
+pageindex
+langchain
+langchain-openai
+langchain-core
+openai
+pymupdf
+python-dotenv
