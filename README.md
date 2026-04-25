@@ -38,6 +38,14 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 ## Usage
 
+### Notebook walkthrough
+
+For a step-by-step interactive walkthrough of the full implementation, open:
+
+```bash
+Notebook/vectorless_rag_workflow.ipynb
+```
+
 ### Step 1 — Index a PDF
 
 ```bash
@@ -73,6 +81,8 @@ python step5_vision_rag.py --doc-id <doc_id> --pdf ./docs/annual_report.pdf --qu
 ```
 vectorless-rag-langchain/
 ├── README.md
+├── Notebook/
+│   └── vectorless_rag_workflow.ipynb
 ├── requirements.txt
 ├── .env
 ├── step1_submit_pdf.py

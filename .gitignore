@@ -9,3 +9,7 @@ wheels/
 # Virtual environments
 .venv
 .env
+
+# Editor and notebook artifacts
+.vscode/
+**/.ipynb_checkpoints/
