@@ -5,19 +5,14 @@ Usage:
     python step1_submit_pdf.py --pdf ./annual_report.pdf
 """
 
-import os
 import time
 import argparse
-from dotenv import load_dotenv
-from pageindex import PageIndexClient
 
-load_dotenv()
-
-print(os.environ["PAGEINDEX_API_KEY"])
+from config import get_pageindex_client
 
 def submit_and_wait(pdf_path: str) -> str:
     """Submit PDF and poll until the tree index is ready."""
-    pi_client = PageIndexClient(api_key=os.environ["PAGEINDEX_API_KEY"])
+    pi_client = get_pageindex_client()
 
     result = pi_client.submit_document(pdf_path)
     doc_id = result["doc_id"]
