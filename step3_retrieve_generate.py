@@ -8,22 +8,18 @@ Usage:
     python step3_retrieve_generate.py --doc-id <doc_id> --query "What was Q3 net revenue?"
 """
 
-import os
 import argparse
-from dotenv import load_dotenv
-from pageindex import PageIndexClient
 
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-load_dotenv()
-
-pi_client = PageIndexClient(api_key=os.environ["PAGEINDEX_API_KEY"])
+from config import get_openai_api_key, get_pageindex_client
 
 
 def retrieve_context(doc_id: str, query: str) -> str:
     """PageIndex tree search — returns relevant sections with page references."""
+    pi_client = get_pageindex_client()
     response = pi_client.chat_completions(
         messages=[{
             "role": "user",
@@ -42,7 +38,7 @@ def build_rag_chain() -> object:
     llm = ChatOpenAI(
         model="gpt-4o",
         temperature=0,
-        api_key=os.environ["OPENAI_API_KEY"]
+        api_key=get_openai_api_key()
     )
 
     prompt = ChatPromptTemplate.from_messages([
