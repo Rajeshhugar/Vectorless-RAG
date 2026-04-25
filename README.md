@@ -41,7 +41,7 @@ OPENAI_API_KEY=your_openai_api_key_here
 ### Step 1 — Index a PDF
 
 ```bash
-python step1_submit_pdf.py --pdf ./annual_report.pdf
+python step1_submit_pdf.py --pdf ./docs/annual_report.pdf
 ```
 
 ### Step 2 — Inspect the document tree
@@ -65,7 +65,7 @@ python step4_multi_doc.py --doc-ids pi-doc-2023 pi-doc-2024 --query "How did mar
 ### Step 5 — Vision RAG (charts and scanned pages)
 
 ```bash
-python step5_vision_rag.py --doc-id <doc_id> --pdf ./annual_report.pdf --query "What does the revenue chart show?"
+python step5_vision_rag.py --doc-id <doc_id> --pdf ./docs/annual_report.pdf --query "What does the revenue chart show?"
 ```
 
 ## Project structure

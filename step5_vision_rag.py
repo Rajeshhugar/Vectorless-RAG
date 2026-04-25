@@ -10,25 +10,21 @@ Usage:
         --query "What does the revenue breakdown chart show for FY2024?"
 """
 
-import os
 import re
 import base64
 import argparse
-from dotenv import load_dotenv
-from pageindex import PageIndexClient
 import fitz  # PyMuPDF
 
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.output_parsers import StrOutputParser
 
-load_dotenv()
-
-pi_client = PageIndexClient(api_key=os.environ["PAGEINDEX_API_KEY"])
+from config import get_openai_api_key, get_pageindex_client
 
 
 def find_relevant_pages(doc_id: str, query: str) -> list[int]:
     """Use the PageIndex tree to identify which page numbers are relevant."""
+    pi_client = get_pageindex_client()
     tree = pi_client.get_tree(doc_id)["result"]
 
     def all_pages(nodes: list) -> list[int]:
@@ -109,7 +105,7 @@ def vision_answer(query: str, page_images: list[dict]) -> str:
         model="gpt-4o",
         temperature=0,
         max_tokens=2048,
-        api_key=os.environ["OPENAI_API_KEY"]
+        api_key=get_openai_api_key()
     )
 
     system = SystemMessage(content=(

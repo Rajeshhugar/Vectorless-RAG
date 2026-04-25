@@ -9,22 +9,18 @@ Usage:
         --query "How did operating margins change year over year?"
 """
 
-import os
 import argparse
-from dotenv import load_dotenv
-from pageindex import PageIndexClient
 
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-load_dotenv()
-
-pi_client = PageIndexClient(api_key=os.environ["PAGEINDEX_API_KEY"])
+from config import get_openai_api_key, get_pageindex_client
 
 
 def retrieve_multi_context(doc_ids: list[str], query: str) -> str:
     """Retrieve tagged sections from multiple documents via PageIndex."""
+    pi_client = get_pageindex_client()
     retrieval = pi_client.chat_completions(
         messages=[{
             "role": "user",
@@ -40,7 +36,7 @@ def build_multi_doc_chain() -> object:
     llm = ChatOpenAI(
         model="gpt-4o",
         temperature=0,
-        api_key=os.environ["OPENAI_API_KEY"]
+        api_key=get_openai_api_key()
     )
 
     prompt = ChatPromptTemplate.from_messages([
